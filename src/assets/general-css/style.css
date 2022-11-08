@@ -123,3 +123,11 @@ ul.ul-custom li:before {
   max-width: 1100px;
   margin: 0 auto;
 }
+
+/* загрузка (полоса и крутилка) */
+.circularProgress {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

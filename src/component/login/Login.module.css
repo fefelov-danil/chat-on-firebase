@@ -1,0 +1,23 @@
+/* Страницы с формой */
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 48px);
+  padding: 60px 20px;
+}
+.loginContainer {
+  width: 100%;
+  max-width: 530px;
+  padding: 50px 70px 70px 70px;
+  background-color: rgba(235,235,235,.4);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+.loginContainer h1 {
+  text-align: center;
+  margin-bottom: 35px;
+}
