@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/chat-on-firebase/static/css/main.848a5c77.css",
-    "main.js": "/chat-on-firebase/static/js/main.1407df4f.js",
+    "main.js": "/chat-on-firebase/static/js/main.2af0c177.js",
     "static/js/787.c2aa408b.chunk.js": "/chat-on-firebase/static/js/787.c2aa408b.chunk.js",
     "static/media/fon-1.jpg": "/chat-on-firebase/static/media/fon-1.933cb06d0cd59ef3fd6f.jpg",
     "static/media/Oswald-Medium.eot": "/chat-on-firebase/static/media/Oswald-Medium.0922d1d6384e1966882d.eot",
@@ -21,11 +21,11 @@
     "static/media/OpenSansRegular.woff": "/chat-on-firebase/static/media/OpenSansRegular.f815477469249e798748.woff",
     "index.html": "/chat-on-firebase/index.html",
     "main.848a5c77.css.map": "/chat-on-firebase/static/css/main.848a5c77.css.map",
-    "main.1407df4f.js.map": "/chat-on-firebase/static/js/main.1407df4f.js.map",
+    "main.2af0c177.js.map": "/chat-on-firebase/static/js/main.2af0c177.js.map",
     "787.c2aa408b.chunk.js.map": "/chat-on-firebase/static/js/787.c2aa408b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.848a5c77.css",
-    "static/js/main.1407df4f.js"
+    "static/js/main.2af0c177.js"
   ]
 }
