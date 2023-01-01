@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {collection, getDocs, orderBy, query} from "firebase/firestore/lite";
+import {addDoc, collection, getDocs, orderBy, query, Timestamp} from "firebase/firestore/lite";
 import {db} from "index";
 import {getAuth, signOut} from "firebase/auth";
 
@@ -7,6 +7,21 @@ export const fetchMessages = createAsyncThunk('chat/fetchMessages', async () => 
   const messagesCol = query(collection(db, "messages"), orderBy("createdAt", "asc"));
   const messageSnapshot = await getDocs(messagesCol);
   return messageSnapshot.docs.map(doc => doc.data()) as MessageType[];
+})
+
+export const newMessage = createAsyncThunk('chat/newMessage',
+  async (param: MessageType) => {
+  try {
+    await addDoc(collection(db, "messages"), {
+      uid: param.uid,
+      displayName: param.displayName,
+      photoURL: param.photoURL,
+      text: param.text,
+      createdAt: Timestamp.fromDate(new Date()),
+    });
+  } catch (e) {
+    console.log(e)
+  }
 })
 
 export const logout = createAsyncThunk('chat/logout', async () => {
@@ -22,16 +37,23 @@ export const logout = createAsyncThunk('chat/logout', async () => {
 const initialState = {
   messages: [] as MessageType[],
   user: {} as UserType,
-  auth: false
+  auth: false,
+  isLoading: false,
 }
 
 export const sliceChatReducer = createSlice({
   name: 'chat',
   initialState,
   reducers: {
+    setLoading(state, action: PayloadAction<boolean>) {
+      state.isLoading = action.payload
+    },
     login(state, action: PayloadAction<UserType>) {
-      state.auth = !!action.payload.email
-      state.user = action.payload
+      const auth = !!action.payload
+      state.auth = auth
+      if (auth) {
+        state.user = action.payload
+      }
     }
   },
   extraReducers: (builder) => {
@@ -45,10 +67,9 @@ export const sliceChatReducer = createSlice({
 })
 
 export const chatReducer = sliceChatReducer.reducer
-export const {login} = sliceChatReducer.actions
+export const {login, setLoading} = sliceChatReducer.actions
 
 export type MessageType = {
-  createdAt: {nanoseconds: number, seconds: number}
   displayName: string
   photoURL: string
   text: string

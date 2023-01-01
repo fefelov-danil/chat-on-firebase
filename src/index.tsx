@@ -1,10 +1,12 @@
-import React, {createContext} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {App} from 'app/App';
 import reportWebVitals from './reportWebVitals';
 import { getFirestore } from 'firebase/firestore/lite';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+import {Provider} from "react-redux";
+import {store} from "bll/store";
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -17,23 +19,16 @@ const firebaseConfig = {
     measurementId: "G-2NMBCBCFV2"
 };
 
-const app = firebase.initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = firebase.auth()
-
-export const Context = createContext<any>(null)
+const app = firebase.initializeApp(firebaseConfig)
+export const db = getFirestore(app)
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-    <Context.Provider value={{
-        // firebase,
-        auth,
-        db
-    }}>
+    <Provider store={store}>
         <App />
-    </Context.Provider>
+    </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

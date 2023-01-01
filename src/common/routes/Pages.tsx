@@ -1,16 +1,18 @@
 import React, {useContext} from 'react';
 import {Navigate, Route, Routes} from "react-router-dom";
-import {Chat} from "component/chat/Chat";
-import {Login} from "component/login/Login";
-import {ROUTES} from "utils/consts";
-import {useAuthState} from "react-firebase-hooks/auth";
-import {Context} from "index";
+import {Chat} from "components/chat/Chat";
+import {Login} from "components/login/Login";
+import {useAppSelector} from "utils/hooks";
 
-export const AppRouter = () => {
-    const context = useContext(Context)
-    const [user] = useAuthState(context.auth)
+export const ROUTES = {
+  LOGIN: '/login',
+  CHAT: '/chat'
+}
 
-    return user ?
+export const Pages = () => {
+    const auth = useAppSelector(state => state.chat.auth)
+
+    return auth ?
         (
             <Routes>
                 <Route path={ROUTES.CHAT} element={<Chat/>}/>
